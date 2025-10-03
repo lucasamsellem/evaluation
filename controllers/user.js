@@ -27,7 +27,6 @@ export async function postLoginForm(req, res) {
   }
 
   const { name, password } = req.body;
-  console.log('here');
 
   if (name.trim() === '' || password.trim() === '') {
     req.session.message = {
@@ -52,7 +51,6 @@ export async function postLoginForm(req, res) {
     .digest('hex');
 
   if (user.password !== hashedInput) {
-    console.log('ERREUR CRYPTO');
     req.session.toast = { type: 'error', message: 'Identifiants inconnu' };
     res.redirect('/login');
     return;
@@ -112,7 +110,8 @@ export function logout(req, res) {
       console.error('Erreur de déconnexion :', err);
       return res.redirect('/'); // ou une page d’erreur
     }
+
     res.clearCookie('connect.sid'); // optionnel mais propre
-    res.redirect('/');
+    res.redirect('/login');
   });
 }
