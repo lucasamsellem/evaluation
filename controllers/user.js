@@ -38,6 +38,16 @@ export async function postLoginForm(req, res) {
 		return;
 	}
 
+	const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+	if (!passwordRegex.test(password)) {
+		req.session.message = {
+			type: "error",
+			message:
+				"Le mot de passe doit comporter au moins 8 caractères, 1 majuscule, 1 chiffre et 1 caractère spécial",
+		};
+		return res.redirect("/login");
+	}
+
 	const user = await User.findOne({ email: name });
 
 	if (!user) {
@@ -72,12 +82,37 @@ export async function postLoginForm(req, res) {
 }
 
 export async function postRegisterForm(req, res) {
-	const { firstName, lastName, email, password } = req.body;
+	const { firstName, lastName, email, password, passwordConfirmation } =
+		req.body;
 
-	if (!firstName || !lastName || !email || !password) {
+	if (
+		!firstName ||
+		!lastName ||
+		!email ||
+		!password ||
+		!passwordConfirmation
+	) {
 		req.session.message = {
 			type: "error",
 			message: "Merci de remplir tous les champs du formulaire",
+		};
+		return res.redirect("/register");
+	}
+
+	if (password !== passwordConfirmation) {
+		req.session.message = {
+			type: "error",
+			message: "Les mots de passe ne correspondent pas",
+		};
+		return res.redirect("/register");
+	}
+
+	const existingUser = await User.findOne({ email });
+
+	if (existingUser) {
+		req.session.message = {
+			type: "error",
+			message: "Cet utilisateur existe deja",
 		};
 		return res.redirect("/register");
 	}
@@ -113,6 +148,6 @@ export function logout(req, res) {
 		res.locals.isConnected = false;
 		res.locals.isAdmin = false;
 		res.clearCookie("connect.sid"); // optionnel mais propre
-		res.redirect("/");
+		res.redirect("/login");
 	});
 }
