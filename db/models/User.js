@@ -1,11 +1,14 @@
 import db from '../index.js';
 
 const userSchema = db.Schema({
-  login: String,
+  firstName: String,
+  lastName: String,
+  email: String,
   password: String,
-  createdAt: {
-    type: Date,
-    default: Date.now(),
+  role: {
+    type: String,
+    enum: ['user', 'admin'] /* enum permet de spécifier des valeurs accéptées */,
+    default: 'user',
   },
 });
 
