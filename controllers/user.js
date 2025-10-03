@@ -68,6 +68,7 @@ export async function postLoginForm(req, res) {
 	req.session.token = token;
 	req.session.isConnected = true;
 	req.session.message = { type: "success", message: "Connécté avec succès." };
+	res.locals.isConnected = true;
 
 	res.redirect("/");
 }
