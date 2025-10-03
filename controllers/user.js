@@ -8,11 +8,21 @@ dotenv.config();
 const { JWT_SECRET } = process.env;
 
 export function getLoginForm(req, res) {
-	res.render("login");
+	if (req.session.message) {
+		res.render("login", { message: req.session.message });
+		req.session.message = null;
+	} else {
+		res.render("login");
+	}
 }
 
 export function getRegisterForm(req, res) {
-	res.render("register");
+	if (req.session.message) {
+		res.render("register", { message: req.session.message });
+		req.session.message = null;
+	} else {
+		res.render("register");
+	}
 }
 
 export async function postLoginForm(req, res) {
