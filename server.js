@@ -24,7 +24,7 @@ server.use(express.static(staticPath));
 server.use(express.urlencoded({ extended: false }));
 server.use(
   session({
-    name: 'shop-session',
+    name: 'evaluation-session',
     secret: session_secret,
     resave: true,
     saveUninitialized: true,
