@@ -6,11 +6,11 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary
     div.container-fluid
         div.collapse.navbar-collapse#navbarNav
             div.navbar-brand
-                a(href="/") Shop
+                a(href="/") Yeeeet
             ul.navbar-nav
-                +navItem("/", "Accueil")
                 if isConnected
-                    +navItem("/add", "Ajouté un produit")
+                    +navItem("/", "Accueil")
                     +navItem("/logout", "Déconnexion", "text-danger")
                 else
                     +navItem("/login", "Connexion", "text-secondary")
+                    +navItem("/register", "Inscription", "text-secondary")

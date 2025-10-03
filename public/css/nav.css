@@ -1,0 +1,76 @@
+/* NAVIGATION */
+
+/* Conteneur */
+
+header nav.navbar {
+	background: rgba(255, 255, 255, 0.75);
+	border-bottom: 1px solid var(--border);
+	backdrop-filter: saturate(150%) blur(10px);
+}
+
+header nav.navbar .container-fluid {
+	max-width: 980px;
+	margin: 0 auto;
+	padding: 1rem 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+/* Titre */
+header nav.navbar .navbar-brand a {
+	color: #0f172a;
+	text-decoration: underline;
+	font-weight: 800;
+	letter-spacing: 0.2px;
+	text-decoration: none;
+	padding: 0.4rem 0.5rem;
+	border-radius: 10px;
+}
+
+.navbar-collapse {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+/* Liste */
+
+header nav.navbar ul.navbar-nav {
+	list-style: none;
+	display: flex;
+	gap: 0.25rem;
+	margin: 0;
+	padding: 0;
+}
+
+header nav.navbar li.nav-item {
+	margin: 0;
+}
+
+/* Liens */
+
+header nav.navbar a.nav-link {
+	color: var(--muted);
+	text-decoration: none;
+	padding: 0.5rem 0.75rem;
+	border-radius: 10px;
+	transition: color 140ms ease, background-color 140ms ease,
+		box-shadow 160ms ease;
+}
+
+header nav.navbar a.nav-link:hover,
+header nav.navbar a.nav-link:focus-visible {
+	color: var(--primary-700);
+	background: rgba(59, 130, 246, 0.08);
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+/* Variables */
+header nav.navbar a.nav-link.text-danger {
+	color: var(--danger);
+}
+header nav.navbar a.nav-link.text-secondary {
+	color: var(--muted);
+}

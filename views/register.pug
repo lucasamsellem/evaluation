@@ -1,0 +1,24 @@
+extends layout/layout
+
+block content
+    div.card
+        h1.card-title.p-4 Inscription
+        div.card-body
+            form(action="/register" method="post")
+                div.mb-3
+                    label.form-check-label(for="first") Prénom
+                    input.form-control(type="text" name="first" id="first" required)
+                div.mb-3
+                    label.form-check-label(for="last") Nom
+                    input.form-control(type="text" name="last" id="last" required)
+                div.mb-3
+                    label.form-check-label(for="email") Email
+                    input.form-control(type="email" name="name" id="name" required)
+                div.mb-3
+                    label.form-check-label(for="password") Mot de passe
+                    input.form-control(type="password" name="password" id="password" required)
+                div.mb-3
+                    label.form-check-label(for="password") Confirmation du mot de passe 
+                    input.form-control(type="password" name="password" id="password" required)
+                div.mb-3
+                    button.btn.btn-primary.btn-block(type="submit") S'inscrire

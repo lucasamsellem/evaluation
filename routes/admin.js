@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import { getDashboard, getAdmin } from '../controllers/admin';
+import { Router } from "express";
+import { getDashboard, getAdmin } from "../controllers/admin.js";
 
 const adminRoute = Router();
 
-adminRoute.get('/dashboard', getDashboard);
-adminRoute.get('/admin', getAdmin);
+adminRoute.get("/", getDashboard);
+adminRoute.get("/admin", getAdmin);
 
 export default adminRoute;
