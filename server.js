@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import routes from './routes/index.js';
-import { isConnectedMiddleware } from './middlewares/auth.js';
 
 dotenv.config();
 console.log(process.env.JWT_SECRET);
@@ -33,7 +32,6 @@ server.use(
   })
 );
 
-server.use(isConnectedMiddleware);
 server.use(routes);
 
 server.listen(port, host, () => {
