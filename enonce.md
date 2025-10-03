@@ -60,7 +60,7 @@ jjklmqdfj
 
 1. Si les informations sont correctes → rediriger vers le Dashboard
 
-2. Si elles sont incorrectes → réafficher la page avec un message d’erreur
+> 2. Si elles sont incorrectes → réafficher la page avec un message d’erreur
 
 ## Pages sécurisées (Dashboard)
 

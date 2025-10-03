@@ -26,12 +26,7 @@ export async function postLoginForm(req, res) {
 		return;
 	}
 
-<<<<<<< HEAD
 	const { name, password } = req.body;
-	console.log("here");
-=======
-  const { name, password } = req.body;
->>>>>>> 9e205c1085ce3d5d116ee44e44b5e732122445cb
 
 	if (name.trim() === "" || password.trim() === "") {
 		req.session.message = {
@@ -55,20 +50,11 @@ export async function postLoginForm(req, res) {
 		.update(password)
 		.digest("hex");
 
-<<<<<<< HEAD
 	if (user.password !== hashedInput) {
-		console.log("ERREUR CRYPTO");
 		req.session.toast = { type: "error", message: "Identifiants inconnu" };
 		res.redirect("/login");
 		return;
 	}
-=======
-  if (user.password !== hashedInput) {
-    req.session.toast = { type: 'error', message: 'Identifiants inconnu' };
-    res.redirect('/login');
-    return;
-  }
->>>>>>> 9e205c1085ce3d5d116ee44e44b5e732122445cb
 
 	const token = jwt.sign({ id: user._id }, JWT_SECRET, {
 		algorithm: "HS256",
@@ -119,7 +105,6 @@ export async function postRegisterForm(req, res) {
 }
 
 export function logout(req, res) {
-<<<<<<< HEAD
 	req.session.destroy((err) => {
 		if (err) {
 			console.error("Erreur de déconnexion :", err);
@@ -130,15 +115,4 @@ export function logout(req, res) {
 		res.clearCookie("connect.sid"); // optionnel mais propre
 		res.redirect("/");
 	});
-=======
-  req.session.destroy((err) => {
-    if (err) {
-      console.error('Erreur de déconnexion :', err);
-      return res.redirect('/'); // ou une page d’erreur
-    }
-
-    res.clearCookie('connect.sid'); // optionnel mais propre
-    res.redirect('/login');
-  });
->>>>>>> 9e205c1085ce3d5d116ee44e44b5e732122445cb
 }
