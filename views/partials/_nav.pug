@@ -1,0 +1,16 @@
+mixin navItem(path, label, className)
+    li.nav-item
+        a.nav-link(class=className href=path)= label
+
+nav.navbar.navbar-expand-lg.bg-body-tertiary
+    div.container-fluid
+        div.collapse.navbar-collapse#navbarNav
+            div.navbar-brand
+                a(href="/") Shop
+            ul.navbar-nav
+                +navItem("/", "Accueil")
+                if isConnected
+                    +navItem("/add", "Ajouté un produit")
+                    +navItem("/logout", "Déconnexion", "text-danger")
+                else
+                    +navItem("/login", "Connexion", "text-secondary")
