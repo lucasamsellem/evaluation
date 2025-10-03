@@ -5,15 +5,32 @@ dotenv.config();
 const { JWT_SECRET } = process.env;
 
 export function isConnected(req, res, next) {
-	res.locals.isConnected = req.session.isConnected;
+	if (req.session.isConnected) {
+		next();
+	} else {
+		res.redirect("/login");
+	}
 	next();
 }
 
-export function isAdmin(req, res, next) {
-	// comment test si c'est admin ?
+export function isNotConnected(req, res, next) {
+	if (!req.session.isConnected) {
+		next();
+	} else {
+		res.redirect("/");
+	}
 }
 
-export function authMiddleware(req, res, next) {
+export function isAdmin(req, res, next) {
+	if (req.session.isAdmin) {
+		next();
+	} else {
+		res.redirect("/");
+	}
+}
+
+// Avec JWT
+/* export function authMiddleware(req, res, next) {
 	if (!req.session.token) {
 		req.session.message = {
 			type: "error",
@@ -38,3 +55,4 @@ export function authMiddleware(req, res, next) {
 
 	next();
 }
+*/
