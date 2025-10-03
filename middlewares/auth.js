@@ -6,11 +6,11 @@ const { JWT_SECRET } = process.env;
 
 export function isConnected(req, res, next) {
 	if (req.session.isConnected) {
+		res.locals.isConnected = true;
 		next();
 	} else {
 		res.redirect("/login");
 	}
-	next();
 }
 
 export function isNotConnected(req, res, next) {
@@ -23,6 +23,7 @@ export function isNotConnected(req, res, next) {
 
 export function isAdmin(req, res, next) {
 	if (req.session.isAdmin) {
+		res.locals.isAdmin = true;
 		next();
 	} else {
 		res.redirect("/");

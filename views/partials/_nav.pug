@@ -9,6 +9,8 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary
                 a(href="/") Yeeeet
             ul.navbar-nav
                 if isConnected
+                    if isAdmin
+                        +navItem("/admin", "Admin", "text-warning")
                     +navItem("/", "Accueil")
                     +navItem("/logout", "Déconnexion", "text-danger")
                 else
