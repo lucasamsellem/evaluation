@@ -46,13 +46,13 @@ export async function postLoginForm(req, res) {
 		res.redirect("/login");
 	}
 
-	if (
-		user.password !==
-		crypto
-			.createHmac("sha256", process.env.PASSWORD_SECRET)
-			.update(password)
-			.digest("hex")
-	) {
+	const hashedInput = crypto
+		.createHmac("sha256", process.env.PASSWORD_SECRET)
+		.update(password)
+		.digest("hex");
+
+	if (user.password !== hashedInput) {
+		console.log("ERREUR CRYPTO");
 		req.session.toast = { type: "error", message: "Identifiants inconnu" };
 		res.redirect("/login");
 		return;
