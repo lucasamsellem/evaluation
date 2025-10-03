@@ -38,14 +38,20 @@ export async function postLoginForm(req, res) {
     return;
   }
 
-  const user = await User.findOne({ login: name });
+  const user = await User.findOne({ email: name });
 
   if (!user) {
     req.session.message = { type: 'error', message: 'Identifiant inconnu' };
     res.redirect('/login');
   }
 
-  if (user.password !== crypto.SHA1(password).toString()) {
+  const hashedInput = crypto
+    .createHmac('sha256', process.env.PASSWORD_SECRET)
+    .update(password)
+    .digest('hex');
+
+  if (user.password !== hashedInput) {
+    console.log('ERREUR CRYPTO');
     req.session.toast = { type: 'error', message: 'Identifiants inconnu' };
     res.redirect('/login');
     return;
